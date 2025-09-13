@@ -6,8 +6,7 @@ import onnxruntime as ort
 from onnx import mapping
 from onnx.onnx_pb import OperatorSetIdProto
 from onnxscript import opset11 as op
-from sklearn.metrics import f1_score, precision_score, recall_score, confusion_matrix, classification_report
-
+from sklearn.metrics import f1_score, precision_score, recall_score
 
 def quantize_linear_np(x_float, scale, zero_point, dtype=np.int8):
     q = np.round(x_float / scale).astype(np.int64)
@@ -54,19 +53,9 @@ def check_accuracy(model, use_custom_ops=False, custom_domain='test.customop', r
     # Set up ONNX Runtime session options
     so = ort.SessionOptions()
     if use_custom_ops:
-        system = platform.system()
-        if custom_domain == 'ai.onnx.contrib':
-            so.register_custom_ops_library(_get_library_path())  # Placeholder for contrib lib
-        elif custom_domain == 'test.customop':
-            if system == 'Windows':
-                custom_op_library_path = "C:/Users/Engineer/Desktop/GitHUb/onnxruntime/build/Windows/RelWithDebInfo/Debug/custom_op_library.dll"
-            elif system == 'Linux':
-                custom_op_library_path = "/home/ali/Desktop/onnxruntime/cmake/cmake-build-debug/libcustom_op_library.so"
-            elif system == 'Darwin':
-                custom_op_library_path = ""  # Add macOS path if needed
-            else:
-                raise RuntimeError(f"Unsupported OS: {system}")
-            so.register_custom_ops_library(custom_op_library_path)
+        custom_domain == 'test.customop'
+        custom_op_library_path = "../CustomOpLib/libcustom_op_library.so"
+        so.register_custom_ops_library(custom_op_library_path)
 
     # Serialize the ONNX model
     ser = model.SerializeToString()
