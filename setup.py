@@ -8,7 +8,7 @@ setup(
     description="A library containing tools for manipulating and incorporating approximate operators in ONNX Models",
     long_description=open("README.md").read(),
     long_description_content_type="text/markdown",
-    url="https://github.com/yourusername/your-library",
+    url="https://github.com/aliasgharshinwari/emgaxo",
     packages=find_packages(where="src"),  # Look for packages inside the "src" directory
     package_dir={"": "src"},             # Tell setuptools that "src" is the root for your packages
     classifiers=[
@@ -16,6 +16,6 @@ setup(
         "License :: OSI Approved :: MIT License",
         "Operating System :: OS Independent",
     ],
-    python_requires=">=3.6",
+    python_requires=">=3.10.12",
     install_requires=[],
 )
