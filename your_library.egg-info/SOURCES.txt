@@ -1,0 +1,11 @@
+README.md
+pyproject.toml
+setup.py
+emgaxo/__init__.py
+emgaxo/module1.py
+emgaxo/module2.py
+tests/test_module1.py
+your_library.egg-info/PKG-INFO
+your_library.egg-info/SOURCES.txt
+your_library.egg-info/dependency_links.txt
+your_library.egg-info/top_level.txt

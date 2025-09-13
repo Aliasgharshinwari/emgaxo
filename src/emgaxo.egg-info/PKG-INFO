@@ -1,0 +1,19 @@
+Metadata-Version: 2.2
+Name: emgaxo
+Version: 0.1.1
+Summary: A library containing tools for manipulating and incorporating approximate operators in ONNX Models
+Home-page: https://github.com/yourusername/your-library
+Author: Ali Asghar, Shahzad Bangash, Suleman Shah
+Author-email: aaliasghar8@example.com
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Requires-Python: >=3.6
+Description-Content-Type: text/markdown
+Dynamic: author
+Dynamic: author-email
+Dynamic: classifier
+Dynamic: description-content-type
+Dynamic: home-page
+Dynamic: requires-python
+Dynamic: summary
