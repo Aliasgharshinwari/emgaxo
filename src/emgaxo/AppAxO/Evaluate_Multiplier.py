@@ -284,13 +284,13 @@ def Compute_Metrics(lut_val):
 
 # if __name__ == "__main__":
 
-#      lut_val = 404750335
+#     lut_val = 404750335
     
 
 #     print(f"Running kernel with LUT config: {hex(lut_val)} ({lut_val})")
 #     output = run_kernel(lut_val)
-#      metrics = compute_metrics(lut_val)
+#     metrics = Compute_Metrics(lut_val)
 
-#      print("\n--- Error Metrics ---")
-#      for k, v in metrics.items():
-#          print(f"{k}: {v}")
+#     print("\n--- Error Metrics ---")
+#     for k, v in metrics.items():
+#         print(f"{k}: {v}")

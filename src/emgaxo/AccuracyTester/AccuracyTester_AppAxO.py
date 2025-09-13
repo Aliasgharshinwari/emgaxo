@@ -9,7 +9,6 @@ bit-flip budgets.  For each step we:
 """
 
 import os
-import pandas as pd      # still imported if you keep accuracy logging later
 from emgaxo.ModelModifier import modify_model
 from emgaxo.ModelModifier import OptimizeQGraph 
 from emgaxo.AccuracyTester import check_accuracy 
