@@ -3,7 +3,7 @@ from setuptools import setup, find_packages
 setup(
     name="emgaxo",
     version="0.1.1",
-    author="Ali Asghar, Shahzad Bangash, Suleman Shah", "Dr. Salim Ullah", "Dr. Laiq Hasan", "Dr. Akash", "Dr. Siva Satyendra Sahoo"
+    author="Ali Asghar, Shahzad Bangash, Suleman Shah", "Dr. Salim Ullah", "Dr. Laiq Hasan", "Dr. Akash", "Dr. Siva Satyendra Sahoo",
     author_email="aaliasghar8@example.com",
     description="A library containing tools for manipulating and incorporating approximate operators in ONNX Models",
     long_description=open("README.md").read(),
