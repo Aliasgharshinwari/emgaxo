@@ -82,7 +82,6 @@ pydantic_core==2.33.2
 pyDigitalWaveTools==1.1
 pydot==3.0.4
 Pygments==2.19.2
-pynq==3.0.1
 pynqmetadata==0.1.5
 pynqutils==0.1.1
 pyparsing==3.2.3
