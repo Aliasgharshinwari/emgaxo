@@ -45,6 +45,10 @@ This makes EMGAXO a powerful tool for research in **energy-efficient deep learni
 ```bash
 git clone https://github.com/<your-username>/EMGAXO.git
 cd emgaxo
+python3 -m venv emgaxo_env
+source emgaxo_env/bin/activate
+
+pip install .
 
 ### Dependencies
 
