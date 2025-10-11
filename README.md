@@ -70,6 +70,7 @@ Head over to the MNIST_Tutorial Folder and run the example scripts in their resp
 
 
 ## Citation
+```bash
 @software{emgaxo,
   author       = {Ali Asghar, Shahzad Bangash, Suleman Shah, Dr. Salim Ullah, Dr. Laiq Hasan, Dr. Akash, Dr. Siva Satyendra Sahoo},
   title        = {EMGAxO: Extending Machine Learning Hardware Generators with Approximate Operators},
@@ -79,3 +80,4 @@ Head over to the MNIST_Tutorial Folder and run the example scripts in their resp
   institution  = {University of Engineering and Technology Peshawar, Ruhr-Universität Bochum},
   note         = {Python library for approximate computing and FPGA-based acceleration using quantized operators.}
 }
+```
