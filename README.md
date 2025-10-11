@@ -67,3 +67,15 @@ pip install onnxruntime-gpu==1.21.0
 
 ### Step 5: Run the Example Scripts
 Head over to the MNIST_Tutorial Folder and run the example scripts in their respective order.
+
+
+## Citation
+@software{emgaxo,
+  author       = {Ali Asghar, Shahzad Bangash, Suleman Shah, Dr. Salim Ullah, Dr. Laiq Hasan, Dr. Akash, Dr. Siva Satyendra Sahoo},
+  title        = {EMGAxO: Extending Machine Learning Hardware Generators with Approximate Operators},
+  year         = {2025},
+  url          = {https://github.com/AliasgharShinwari/emgaxo},
+  version      = {1.0.0},
+  institution  = {University of Engineering and Technology Peshawar, Ruhr-Universität Bochum},
+  note         = {Python library for approximate computing and FPGA-based acceleration using quantized operators.}
+}
