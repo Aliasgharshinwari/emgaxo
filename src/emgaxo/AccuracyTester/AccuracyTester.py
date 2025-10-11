@@ -5,7 +5,7 @@ import numpy as np
 import onnxruntime as ort
 from onnx import mapping
 from onnx.onnx_pb import OperatorSetIdProto
-from onnxscript import opset11 as op
+#from onnxscript import opset11 as op
 from sklearn.metrics import f1_score, precision_score, recall_score
 
 def quantize_linear_np(x_float, scale, zero_point, dtype=np.int8):
