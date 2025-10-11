@@ -45,18 +45,22 @@ This makes EMGAXO a powerful tool for research in **energy-efficient deep learni
 ```bash
 git clone https://github.com/Aliasgharshinwari/emgaxo.git
 cd emgaxo
+```
 
 ### Step 2: Create and Activate Virtual Environment for Package Dependancies
 ```bash
 python3 -m venv emgaxo_env
 source emgaxo_env/bin/activate
+```
 
 ### Step 3: Install the EMGAxO Python Library as well as the required dependancies
 ```bash
 pip install .
 pip install -r requirements.txt
+```
 
 ### Step 4: Force Install OnnxRuntime GPU Package for GPU based Inference
 ```bash
 pip uninstall onnxruntime onnxruntime-gpu -y
 pip install onnxruntime-gpu==1.21.0
+```
