@@ -50,8 +50,3 @@ source emgaxo_env/bin/activate
 pip install .
 pip install -r requirements.txt
 
-### Dependencies
-
-```bash
-pip install numpy pandas tqdm
-pip install hls4ml qkeras
