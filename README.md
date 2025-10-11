@@ -40,7 +40,7 @@ This makes EMGAXO a powerful tool for research in **energy-efficient deep learni
 - Vitis HLS and Vivado 2022.2(for FPGA synthesis)  
 - CUDA Toolkit 12.4
 
-### 🛠️ Step 1: Clone the Repository
+### Step 1: Clone the Repository
 
 ```bash
 git clone https://github.com/Aliasgharshinwari/emgaxo.git
