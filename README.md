@@ -64,3 +64,6 @@ pip install -r requirements.txt
 pip uninstall onnxruntime onnxruntime-gpu -y
 pip install onnxruntime-gpu==1.21.0
 ```
+
+### Step 5: Run the Example Scripts
+Head over to the MNIST_Tutorial Folder and run the example scripts in their respective order.
