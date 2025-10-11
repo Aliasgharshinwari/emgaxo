@@ -50,4 +50,5 @@ python3 -m venv emgaxo_env
 source emgaxo_env/bin/activate
 pip install .
 pip install -r requirements.txt
-
+pip uninstall onnxruntime onnxruntime-gpu -y
+pip install onnxruntime-gpu==1.21.0
