@@ -1,3 +1,4 @@
+import os
 import onnx
 from emgaxo import check_accuracy
 #import tensorflow as tf
