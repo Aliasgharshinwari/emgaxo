@@ -65,7 +65,7 @@ def check_accuracy(model, use_custom_ops=False, custom_domain='test.customop', r
 
         # Choose execution providers
     available_providers = ort.get_available_providers()
-    #print("Available providers:", available_providers)
+    print("Available providers:", available_providers)
 
     # Choose execution providers
     providers = ['CUDAExecutionProvider'] if 'CUDAExecutionProvider' in ort.get_available_providers() else ['CPUExecutionProvider']
