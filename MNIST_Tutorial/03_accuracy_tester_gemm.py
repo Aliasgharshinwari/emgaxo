@@ -3,10 +3,17 @@ from emgaxo import check_accuracy
 #import tensorflow as tf
 import numpy as np
 
-#(_, _), (x_test, y_test) = tf.keras.datasets.mnist.load_data()
+# === Step 1: Check and prepare MNIST test data ===
+if not (os.path.exists("x_test.npy") and os.path.exists("y_test.npy")):
+    print("🔄 x_test.npy or y_test.npy not found — downloading MNIST dataset...")
+    import tensorflow as tf
+    (_, _), (x_test, y_test) = tf.keras.datasets.mnist.load_data()
+    np.save("x_test.npy", x_test)
+    np.save("y_test.npy", y_test)
+    print("✅ MNIST data downloaded and saved locally.")
+else:
+    print("✅ MNIST test data already exists.")
 
-#np.save("x_test.npy", x_test)
-#np.save("y_test.npy", y_test)
 
 x_test = np.load("x_test.npy")
 y_test = np.load("y_test.npy")
