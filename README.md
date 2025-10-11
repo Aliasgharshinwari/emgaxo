@@ -19,7 +19,8 @@ This makes EMGAXO a powerful tool for research in **energy-efficient deep learni
 
 ## Features
 
-- **Seamless integration** with hls4ml models  
+- **Seamless integration** with hls4ml models
+- **NVIDIA CUDA** Accelerated Software Inference for ANNs  
 - **AppAxO Multipliers** 8-bit Signed Multipliers with configurable 36-bit LUT architectures  
 - Built-in error analysis:  
   - Average/Absolute Error  
