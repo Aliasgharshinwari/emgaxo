@@ -35,7 +35,7 @@ This makes EMGAXO a powerful tool for research in **energy-efficient deep learni
 
 ### Prerequisites
 
-- Python **3.10.12+**  
+- Python **3.10.12**  
 - [hls4ml](https://fastmachinelearning.org/hls4ml/)  
 - Vitis HLS and Vivado 2022.2(for FPGA synthesis)  
 - CUDA Toolkit 12.4
