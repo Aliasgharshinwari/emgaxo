@@ -56,7 +56,8 @@ def check_accuracy(model, use_custom_ops=False, custom_domain='test.customop', r
     if use_custom_ops:
         custom_domain == 'test.customop'
         #custom_op_library_path = "../CustomOpLib/libcustom_op_library.so"
-        custom_op_library_path = "libcustom_op_library.so"
+        custom_op_library_path = "./emgaxo/src/emgaxo/CustomOpLib/libcustom_op_library.so"
+        #custom_op_library_path = "libcustom_op_library.so"
         so.register_custom_ops_library(custom_op_library_path)
 
     # Serialize the ONNX model
