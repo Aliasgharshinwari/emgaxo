@@ -18,6 +18,9 @@ Outputs
 
 
 ## Script 2 – Static Quantization
+
+File: 02_mnist_static_quantization.py
+
 This script performs static quantization of the trained FP32 ONNX model using onnxruntime.quantization. The type of Quantization is QOperator based (weights as uint & activations as int32).
 
 Before running this script, make sure to preprocess the FP32 Model obained from script 1 using below command.
@@ -27,41 +30,44 @@ python3 -m onnxruntime.quantization.preprocess --input ./models/mnist_model.onnx
 ```
 
 Outputs
-Quantized model: models/mnist_model_quantized_qgemm_uint.onnx
+- Quantized model: models/mnist_model_quantized_qgemm_uint.onnx
 
 ## Script 3 – Evaluate Original Model
+File: 03_accuracy_tester_gemm.py
 Evaluates the original FP32 ONNX model accuracy using EMGAxO’s check_accuracy() function.
 
 Steps
-Loads MNIST test data (x_test.npy, y_test.npy).
-Loads and verifies ONNX model (mnist_model_infer.onnx).
-Computes accuracy, precision, recall, and F1-score.
+- Loads MNIST test data (x_test.npy, y_test.npy).
+- Loads and verifies ONNX model (mnist_model_infer.onnx).
+- Computes accuracy, precision, recall, and F1-score.
 
 Outputs
-Accuracy: 97.85%
-Precision: 0.9780
-Recall:    0.9791
-F1 Score:  0.9785
+- Accuracy: 97.85%
+- Precision: 0.9780
+- Recall:    0.9791
+- F1 Score:  0.9785
 
 ## Script 4 – Evaluate Quantized Model
+File: 04_accuracy_tester_qgemm.py
 Evaluates the quantized ONNX model performance.
 
 Steps
-Loads mnist_model_quantized_qgemm_uint.onnx.
-Uses check_accuracy() with quantized inference enabled.
-Reports the same metrics as the FP32 model.
+- Loads mnist_model_quantized_qgemm_uint.onnx.
+- Uses check_accuracy() with quantized inference enabled.
+- Reports the same metrics as the FP32 model.
 
 
 ## Script 5 – Modify Model with APPROXIMATE QGEMM Nodes
+File: 05_modifying_qgemm_with_ApproxQGemm.py
 This script modifies the quantized model by replacing standard QGemm nodes with ApproxQGemm operator.
 
 Steps
 
-Loads quantized model.
-Specifies target MatMul node names for replacement.
-Applies EMGAxO’s modify_model() with use_approximate_ops=True.
-Injects custom operator domain: 'test.customop'.
-Optionally sets an initial LUT configuration value (INIT_Value).
+- Loads quantized model.
+- Specifies target MatMul node names for replacement.
+- Applies EMGAxO’s modify_model() with use_approximate_ops=True.
+- Injects custom operator domain: 'test.customop'.
+- Optionally sets an initial LUT configuration value (INIT_Value).
 
 Outputs
 Modified model: models/mnist_model_quantized_qgemm_uint_modified.onnx
