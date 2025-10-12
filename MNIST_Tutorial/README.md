@@ -33,7 +33,9 @@ Outputs
 - Quantized model: models/mnist_model_quantized_qgemm_uint.onnx
 
 ## Script 3 – Evaluate Original Model
+
 File: 03_accuracy_tester_gemm.py
+
 Evaluates the original FP32 ONNX model accuracy using EMGAxO’s check_accuracy() function.
 
 Steps
@@ -48,7 +50,9 @@ Outputs
 - F1 Score:  0.9785
 
 ## Script 4 – Evaluate Quantized Model
+
 File: 04_accuracy_tester_qgemm.py
+
 Evaluates the quantized ONNX model performance.
 
 Steps
@@ -58,7 +62,9 @@ Steps
 
 
 ## Script 5 – Modify Model with APPROXIMATE QGEMM Nodes
+
 File: 05_modifying_qgemm_with_ApproxQGemm.py
+
 This script modifies the quantized model by replacing standard QGemm nodes with ApproxQGemm operator.
 
 Steps
@@ -73,49 +79,59 @@ Outputs
 Modified model: models/mnist_model_quantized_qgemm_uint_modified.onnx
 
 ## Script 6 – Graph Optimization
+
+File: 06_removing_quantize_linear.py
+
 Performs structural optimization on the quantized-approximate model using EMGAxO’s OptimizeQGraph().
 
 Steps
-Loads modified ONNX model.
-Simplifies computation graph (constant folding, node fusions).
-Saves the optimized ONNX model.
+- Loads modified ONNX model.
+- Simplifies computation graph (constant folding, node fusions).
+- Saves the optimized ONNX model.
 
-Outputs
-Optimized model: models/mnist_model_quantized_qgemm_uint_optimized.onnx
+Output
+- Optimized model: models/mnist_model_quantized_qgemm_uint_optimized.onnx
 
 ## Script 7 – Evaluate Optimized Model
-Evaluates the optimized QGEMM model performance using custom CUDA kernels.
+
+File: 07_accuracy_tester_ApproxQGemm.py
+
+Evaluates the optimized QGEMM model performance using custom CUDA kernel.
 
 Steps
-Loads optimized model.
-Runs check_accuracy() with CUDA-based custom operator support.
-Generates detailed performance metrics.
+- Loads optimized model.
+- Runs check_accuracy() with CUDA-based custom operator support.
+- Generates detailed performance metrics.
 
 Outputs
-Accuracy: 97.42%
-Precision: 0.9741
-Recall:    0.9748
-F1 Score:  0.9744
+- Accuracy: 97.42%
+- Precision: 0.9741
+- Recall:    0.9748
+- F1 Score:  0.9744
 
 ## Script 8 – AppAxO Approximation Sweep
+
+File: 08_Modify_With_AppAxO_INIT.py
+
 Automatically generates a set of approximate models by sweeping LUT-based approximation parameters using EMGAxO’s ModifyWithAppAxO().
 
 Steps
-Loads quantized model.
-Iteratively modifies it with different 36-bit LUT configurations.
-Saves multiple approximate ONNX models in a directory.
+- Loads quantized model.
+- Iteratively modifies it with different 36-bit LUT configurations.
+- Saves multiple approximate ONNX models in a directory.
 
 Outputs
-Directory: ./AppAxO_Models40k/
-Each model represents a unique approximate multiplier configuration.
+- Directory: ./AppAxO_Models40k/
+- Each model represents a unique approximate multiplier configuration.
 
 ## Script 9 – Batch Model Evaluation and CSV Logging
 
-File: evaluate_all_appaxo_models.py
+File: 09_Accuracy_Tester_AppAxO_INIT copy.py
+
 Evaluates all approximate models in bulk and logs results into a CSV.
 
 Features
-Automatically loads each .onnx model in a directory.
-Parses configuration values from filenames (INIT integers).
-Computes disabled LUT bits using 36-bit width representation.
-Evaluates performance metrics and writes them to CSV.
+- Automatically loads each .onnx model in a directory.
+- Parses configuration values from filenames (INIT integers).
+- Computes disabled LUT bits using 36-bit width representation.
+- Evaluates performance metrics and writes them to CSV.
