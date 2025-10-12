@@ -4,7 +4,7 @@
 ## Overview
 This repository demonstrates the **EMGAxO workflow** for software level testing i-e from training a simple MNIST classifier in TensorFlow, exporting it to **ONNX**, quantizing it, replacing standard operators with **approximate QGEMM (Quantized GEMM)** operator, optimizing the quantized graph, and finally evaluating accuracy and error metrics for a full **approximate inference**.
 
-## 🧩 Table of Contents
+## Table of Contents
  
 1. [01 – Training & Exporting Model](#-script-1--training--exporting-model)  
 2. [02 – Static Quantization](#-script-2--static-quantization)  
