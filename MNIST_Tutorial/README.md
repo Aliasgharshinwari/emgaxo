@@ -21,7 +21,7 @@ Outputs
 
 File: 02_mnist_static_quantization.py
 
-This script performs static quantization of the trained FP32 ONNX model using onnxruntime.quantization. The type of Quantization is QOperator based (weights as uint & activations as int32).
+This script performs static quantization of the trained FP32 ONNX model using onnxruntime.quantization. The type of Quantization is QOperator based (weights as uint8 & activations as int32).
 
 Before running this script, make sure to preprocess the FP32 Model obained from script 1 using below command.
 
