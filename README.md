@@ -28,7 +28,7 @@ emgaxo/
 ├── __init__.py
 ├── AccuracyTester/
 │   ├── __init__.py
-│   ├── AccuracyTester.py               # Handles HLS model generation and integration with hls4ml
+│   ├── AccuracyTester.py               # Evaluates an ONNX model’s classification performance (accuracy, precision, recall, F1) with optional custom operator support and GPU-based inference.
 │   └── AccuracyTester_AppAxO.py             # Converts ONNX → hls4ml and injects approximate operators
 │
 ├── AppAxO/
