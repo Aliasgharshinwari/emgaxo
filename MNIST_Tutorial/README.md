@@ -9,6 +9,7 @@ Before running any script, make sure the environment is properly set:
 ## Script 1 – Training & Exporting Model
 
 File: 01_mnist_fully_connected_model_training.py
+
 This script trains a fully connected neural network (FCNN) on the MNIST dataset using TensorFlow and exports it as an ONNX model.
 
 Outputs
