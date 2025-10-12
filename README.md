@@ -5,23 +5,61 @@ It enables researchers to explore **approximate computing within FPGA-accelerate
 
 ---
 
-## Overview
+## Structure
+emgaxo/
+├── __init__.py
+├── core/
+│   ├── __init__.py
+│   ├── builder.py               # Handles HLS model generation and integration with hls4ml
+│   ├── converter.py             # Converts ONNX → hls4ml and injects approximate operators
+│   ├── evaluator.py             # Evaluates accuracy, latency, and error metrics
+│   ├── explorer.py              # Performs design-space exploration (resource vs accuracy)
+│   └── utils.py                 # Common utility functions for data handling and logging
+│
+├── approx/
+│   ├── __init__.py
+│   ├── appaxo_lut.py            # AppAxO-based LUT multiplier implementations
+│   ├── quantizer.py             # Quantization and dequantization helpers
+│   ├── error_metrics.py         # Computes Average, Relative, and Max Error metrics
+│   └── config.py                # Configuration for approximate multiplier selection
+│
+├── cuda/
+│   ├── __init__.py
+│   ├── qgemm_cuda.py            # CUDA implementation of approximate quantized GEMM
+│   ├── kernels/                 # Custom CUDA kernels for inference
+│   │   ├── lut_mul_kernel.cu    # Low-level kernel for LUT-based approximate multiplication
+│   │   └── ...
+│   └── runtime.py               # Manages CUDA execution and memory transfer
+│
+├── hls/
+│   ├── __init__.py
+│   ├── templates/               # HDL/HLS code templates used for code generation
+│   ├── hls_generator.py         # Generates synthesizable C++/HLS code for FPGA
+│   └── vivado_utils.py          # Vivado/Vitis integration scripts
+│
+├── examples/
+│   ├── MNIST_Tutorial/          # End-to-end example for MNIST using approximate MLP
+│   ├── CIFAR_Tutorial/          # (Optional) CIFAR-10 example
+│   └── simple_demo.py           # Quick-start demo for testing multipliers
+│
+├── tests/
+│   ├── test_lut_multiplier.py   # Unit tests for AppAxO LUT multipliers
+│   ├── test_qgemm_cuda.py       # Tests for CUDA quantized GEMM
+│   ├── test_converter.py        # Verifies ONNX → hls4ml flow correctness
+│   └── test_metrics.py          # Validates error metric computations
+│
+├── requirements.txt
+├── setup.py
+└── README.md
 
-- Extends **hls4ml** with **approximate operator support**
-- Provides Hardware Software Co Design for Efficient Approximate Hardware Accelerators for ANNs.
-- Allows replacing exact multipliers with **LUT-based approximate multipliers** and showing the final accuracy of MLP Models
-- Provides **error metric evaluation** before hardware implementation
-- Targets FPGA deployment with **resource-accuracy trade-off exploration**  
-
-This makes EMGAXO a powerful tool for research in **energy-efficient deep learning**, **approximate arithmetic**, and **FPGA-accelerated ML inference**.
-
----
 
 ## Features
 
+- Extends **hls4ml** with **approximate operator support**
 - **Seamless integration** with hls4ml models
 - **NVIDIA CUDA** Accelerated Software Inference for ANNs  
-- **AppAxO's** 8-bit Signed Multipliers with configurable 36-bit LUT architectures  
+- **AppAxO's** 8-bit Signed Multipliers with configurable 36-bit LUT architectures
+- Allows replacing exact multipliers with **LUT-based approximate multipliers** and showing the final accuracy of MLP Models
 - Built-in error analysis:  
   - Average/Absolute Error  
   - Relative Error metrics  
@@ -29,6 +67,7 @@ This makes EMGAXO a powerful tool for research in **energy-efficient deep learni
   - Max/Min Error  
 - **Design-space exploration** across multiple multiplier configurations  
 - Support for **ONNX → hls4ml → FPGA flow** with Approximate Multipliers  
+- Targets FPGA deployment with **resource-accuracy trade-off exploration**  
 
 ---
 
