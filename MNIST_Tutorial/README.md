@@ -1,16 +1,8 @@
 # EMGAxO Workflow on Artificial Neural Network trained on MNIST Dataset — Full Pipeline
-
-# 🧠 EMGAxO MNIST Example Pipeline  
-**Extending hls4ml with Approximate Operator Support using EMGAxO**
-
 ---
 
 ## 📘 Overview
-
 This repository demonstrates the **complete EMGAxO workflow** — from training a simple MNIST classifier in TensorFlow, exporting it to **ONNX**, quantizing it, replacing standard operators with **approximate QGEMM (Quantized GEMM)** operators, optimizing the quantized graph, and finally evaluating accuracy and error metrics for a full **approximate inference pipeline**.
-
-The EMGAxO library seamlessly integrates **approximate arithmetic logic** (such as LUT-based multipliers) within FPGA-accelerated or CUDA-based machine learning inference pipelines. This example uses the **MNIST** dataset for demonstration.
-
 ---
 
 ## 🧩 Table of Contents
