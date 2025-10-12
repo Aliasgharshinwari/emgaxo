@@ -1,4 +1,4 @@
-# EMGAxO Workflow of ANN trained on MNIST Dataset — Full Pipeline
+# EMGAxO Workflow of ANN trained on MNIST Dataset
 ---
 
 ## 📘 Overview
