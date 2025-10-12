@@ -4,26 +4,11 @@
 ## Overview
 This repository demonstrates the **EMGAxO workflow** for software level testing i-e from training a simple MNIST classifier in TensorFlow, exporting it to **ONNX**, quantizing it, replacing standard operators with **approximate QGEMM (Quantized GEMM)** operator, optimizing the quantized graph, and finally evaluating accuracy and error metrics for a full **approximate inference**.
 
-## Table of Contents
- 
-1. [01 – Training & Exporting Model](#-script-1--training--exporting-model)  
-2. [02 – Static Quantization](#-script-2--static-quantization)  
-3. [03 – Evaluate Original Model](#-script-3--evaluate-original-model)  
-4. [04 – Evaluate Quantized Model](#-script-4--evaluate-quantized-model)  
-5. [05 – Modify Model with QGEMM Nodes](#-script-5--modify-model-with-qgemm-nodes)  
-6. [06 – Graph Optimization](#-script-6--graph-optimization)  
-7. [07 – Evaluate Optimized Model](#-script-7--evaluate-optimized-model)  
-8. [08 – AppAxO Approximation Sweep](#-script-8--appaxo-approximation-sweep)  
-9. [09 – Batch Model Evaluation and CSV Logging](#-script-9--batch-model-evaluation-and-csv-logging)  
-10. [Output Structure](#-output-structure)
-
----
-
 Before running any script, make sure the environment is properly set:
 
 ## Script 1 – Training & Exporting Model
 
-File: train_and_export.py
+File: 01_mnist_fully_connected_model_training.py
 This script trains a fully connected neural network (FCNN) on the MNIST dataset using TensorFlow and exports it as an ONNX model.
 
 Outputs
