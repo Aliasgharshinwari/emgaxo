@@ -92,6 +92,7 @@ If you use this library in a publication, please cite the software/article
   organization = {University of Engineering and Technology Peshawar and Ruhr-Universität Bochum},
   url          = {https://github.com/AliasgharShinwari/emgaxo},
   note         = {A Python library for approximate computing and FPGA-based acceleration using quantized operators.},
-  keywords     = {Approximate computing, FPGA, Quantized operators, Machine learning acceleration}
+  keywords     = {Approximate computing, FPGA, Quantized operators, Machine learning acceleration},
+  doi          = {10.1109/LES.2025.3600043}
 }
 ```
