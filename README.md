@@ -70,7 +70,7 @@ Head over to the MNIST_Tutorial Folder and run the example scripts in their resp
 
 
 ## Citation
-If you use this library in a publication, please cite the software
+If you use this library in a publication, please cite the software/article
 ```bash
 @software{emgaxo,
   author       = {Ali Asghar, Shahzad Bangash, Suleman Shah, Dr. Salim Ullah, Dr. Laiq Hasan, Dr. Akash, Dr. Siva Satyendra Sahoo},
