@@ -33,14 +33,15 @@ emgaxo/
 │
 ├── AppAxO/
 │   ├── __init__.py
-│   └── Evaluate_Multiplier.py            # Configuration for approximate multiplier selection
+│   └── Evaluate_Multiplier.py          # Implements a CUDA-based LUT-configurable 8-bit approximate multiplier kernel using PyCUDA to compute full input pair products and evaluate detailed error metrics for each LUT configuration.
 │
 ├── CustomOpLib/
-│   └── libcustom_op_library.so # CUDA implementation of approximate quantized GEMM
+│   └── libcustom_op_library.so         # Shared library of custom ONNX Runtime operators (CUDA) implementing the approximate quantized GEMM used by EMGAxO at inference time.
 │
 ├── ModelModifier/
 │   ├── __init__.py
-│   └── ModelModifier.py               # HDL/HLS code templates used for code generation
+│   └── ModelModifier.py               # Modifies an ONNX model by replacing target operators with custom approximate QGEMM nodes, optimizes the quantized graph, and rewires or updates tensor datatypes for approximate inference support.
+
 
 ```
 ## Installation
