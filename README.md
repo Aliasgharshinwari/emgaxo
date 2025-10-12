@@ -29,7 +29,7 @@ emgaxo/
 ├── AccuracyTester/
 │   ├── __init__.py
 │   ├── AccuracyTester.py               # Evaluates an ONNX model’s classification performance (accuracy, precision, recall, F1) with optional custom operator support and GPU-based inference.
-│   └── AccuracyTester_AppAxO.py             # Converts ONNX → hls4ml and injects approximate operators
+│   └── AccuracyTester_AppAxO.py        # Generates multiple ONNX model variants by progressively modifying QGEMM layers with different 36-bit AppAxO configurations for approximate computing exploration.
 │
 ├── AppAxO/
 │   ├── __init__.py
