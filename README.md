@@ -78,7 +78,7 @@ If you use this library in a publication, please cite the software/article
   year         = {2025},
   url          = {https://github.com/Aliasgharshinwari/emgaxo},
   version      = {1.0.0},
-  institution  = {University of Engineering and Technology Peshawar, Ruhr-Universität Bochum},
+  institution  = {University of Engineering and Technology Peshawar and Ruhr-Universität Bochum},
   note         = {EMGAxO extends hls4ml with the AppAxO Library to enable approximate computing in FPGA-based machine learning accelerators.}
 }
 ```
