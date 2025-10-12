@@ -1,6 +1,6 @@
 # EMGAxO
 
-**EMGAXO** (Extending Machine Learning Hardware Generators with Approximate Operators) is an **extension of [hls4ml](https://github.com/fastmachinelearning/hls4ml)** that integrates the **AppAxO Library** for employing approximate multipliers in the generated HLS Code of the FPGA based Hardware Accelerators.
+**EMGAXO** (Extending Machine Learning Hardware Generators with Approximate Operators) is an **extension of [hls4ml](https://github.com/fastmachinelearning/hls4ml)** that integrates the **[AppAxO Library](https://dl.acm.org/doi/abs/10.1145/3513262)** for employing approximate multipliers in the generated HLS Code of the FPGA based Hardware Accelerators.
 It enables researchers to explore **approximate computing within FPGA-accelerated machine learning pipelines**, providing **design-space exploration** with both hardware synthesis and error metrics analysis.
 
 ---
