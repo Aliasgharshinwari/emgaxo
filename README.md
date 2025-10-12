@@ -76,7 +76,7 @@ If you use this library in a publication, please cite the software/article
   author       = {Ali Asghar, Shahzad Bangash, Suleman Shah, Dr. Salim Ullah, Dr. Laiq Hasan, Dr. Akash, Dr. Siva Satyendra Sahoo},
   title        = {EMGAxO: Extending Machine Learning Hardware Generators with Approximate Operators},
   year         = {2025},
-  url          = {https://github.com/AliasgharShinwari/emgaxo},
+  url          = {https://github.com/Aliasgharshinwari/emgaxo},
   version      = {1.0.0},
   institution  = {University of Engineering and Technology Peshawar, Ruhr-Universität Bochum},
   note         = {Python library for approximate computing and FPGA-based acceleration using quantized operators.}
@@ -90,7 +90,7 @@ If you use this library in a publication, please cite the software/article
   booktitle    = {Proceedings of the 2025 International Conference on Compilers, Architectures, and Synthesis for Embedded Systems (CASES)},
   year         = {2025},
   organization = {University of Engineering and Technology Peshawar and Ruhr-Universität Bochum},
-  url          = {https://github.com/AliasgharShinwari/emgaxo},
+  url          = {https://github.com/Aliasgharshinwari/emgaxo},
   note         = {A Python library for approximate computing and FPGA-based acceleration using quantized operators.},
   keywords     = {Approximate computing, FPGA, Quantized operators, Machine learning acceleration},
   doi          = {10.1109/LES.2025.3600043}
