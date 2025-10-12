@@ -5,6 +5,7 @@ It enables researchers to explore **approximate computing within FPGA-accelerate
 
 ---
 
+
 ## Structure
 emgaxo/
 ├── __init__.py
@@ -52,7 +53,7 @@ emgaxo/
 ├── setup.py
 └── README.md
 
-
+---
 ## Features
 
 - Extends **hls4ml** with **approximate operator support**
