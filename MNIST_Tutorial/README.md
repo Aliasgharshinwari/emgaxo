@@ -1,9 +1,8 @@
 # EMGAxO Workflow of ANN trained on MNIST Dataset
----
 
-## 📘 Overview
+
+## Overview
 This repository demonstrates the **complete EMGAxO workflow** — from training a simple MNIST classifier in TensorFlow, exporting it to **ONNX**, quantizing it, replacing standard operators with **approximate QGEMM (Quantized GEMM)** operators, optimizing the quantized graph, and finally evaluating accuracy and error metrics for a full **approximate inference pipeline**.
----
 
 ## 🧩 Table of Contents
  
