@@ -41,14 +41,7 @@ emgaxo/
 ├── ModelModifier/
 │   ├── __init__.py
 │   └── ModelModifier.py               # HDL/HLS code templates used for code generation
-│
-├── Operators/
-│   ├── Accurate/          # End-to-end example for MNIST using approximate MLP
-|   |    ├── __init__.py
-│   |               
-|   |
-│   └── Approximate/          # (Optional) CIFAR-10 example
-|   |    ├── __init__.py
+
 ```
 ## Installation
 
