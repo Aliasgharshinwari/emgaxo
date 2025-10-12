@@ -1,58 +1,58 @@
-
 # EMGAxO Workflow on Artificial Neural Network trained on MNIST Dataset — Full Pipeline
 
-🧮 Script 1 – Training & Exporting Model
+# 🧠 EMGAxO MNIST Example Pipeline  
+**Extending hls4ml with Approximate Operator Support using EMGAxO**
+
+---
+
+## 📘 Overview
+
+This repository demonstrates the **complete EMGAxO workflow** — from training a simple MNIST classifier in TensorFlow, exporting it to **ONNX**, quantizing it, replacing standard operators with **approximate QGEMM (Quantized GEMM)** operators, optimizing the quantized graph, and finally evaluating accuracy and error metrics for a full **approximate inference pipeline**.
+
+The EMGAxO library seamlessly integrates **approximate arithmetic logic** (such as LUT-based multipliers) within FPGA-accelerated or CUDA-based machine learning inference pipelines. This example uses the **MNIST** dataset for demonstration.
+
+---
+
+## 🧩 Table of Contents
+ 
+1. [01 – Training & Exporting Model](#-script-1--training--exporting-model)  
+2. [02 – Static Quantization](#-script-2--static-quantization)  
+3. [03 – Evaluate Original Model](#-script-3--evaluate-original-model)  
+4. [04 – Evaluate Quantized Model](#-script-4--evaluate-quantized-model)  
+5. [05 – Modify Model with QGEMM Nodes](#-script-5--modify-model-with-qgemm-nodes)  
+6. [06 – Graph Optimization](#-script-6--graph-optimization)  
+7. [07 – Evaluate Optimized Model](#-script-7--evaluate-optimized-model)  
+8. [08 – AppAxO Approximation Sweep](#-script-8--appaxo-approximation-sweep)  
+9. [09 – Batch Model Evaluation and CSV Logging](#-script-9--batch-model-evaluation-and-csv-logging)  
+10. [Output Structure](#-output-structure)
+
+---
+
+Before running any script, make sure the environment is properly set:
+
+## Script 1 – Training & Exporting Model
 
 File: train_and_export.py
-
 This script trains a fully connected neural network (FCNN) on the MNIST dataset using TensorFlow and exports it as an ONNX model.
 
-Features
-
-GPU configuration with memory growth handling.
-
-Logging with timestamps and severity levels.
-
-Early stopping, learning rate reduction, and checkpointing.
-
-Automatic ONNX export via tf2onnx.
-
 Outputs
+- Trained model weights: models/best_model.h5
+- Exported ONNX model: models/mnist_model.onnx
 
-Trained model weights: models/best_model.h5
 
-Exported ONNX model: models/mnist_model.onnx
-
-Command
-python train_and_export.py
-
-🧭 Script 2 – Static Quantization
+## Script 2 – Static Quantization
 
 File: quantize_mnist_model.py
+This script performs static quantization of the trained FP32 ONNX model using onnxruntime.quantization. The type of Quantization is QOperator based (weights as uint & activations as int32).
 
-This script performs static quantization of the trained FP32 ONNX model using onnxruntime.quantization.
+Before running this script, make sure to preprocess the FP32 Model obained from script 1 using below command.
 
-Steps
-
-Loads MNIST data (only inputs, not labels).
-
-Preprocesses the ONNX model for inference:
-
-python3 -m onnxruntime.quantization.preprocess \
---input ./models/mnist_model.onnx \
---output ./models/mnist_model_infer.onnx
-
-
-Defines a CalibrationDataReader that normalizes and flattens MNIST data.
-
-Performs QOperator quantization (both weights & activations as uint8).
+```bash
+python3 -m onnxruntime.quantization.preprocess --input ./models/mnist_model.onnx --output ./models/mnist_model_infer.onnx
+```
 
 Outputs
-
 Quantized model: models/mnist_model_quantized_qgemm_uint.onnx
-
-Command
-python quantize_mnist_model.py
 
 🧪 Script 3 – Evaluate Original Model
 
