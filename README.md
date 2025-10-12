@@ -22,7 +22,7 @@ It enables researchers to explore **approximate computing within FPGA-accelerate
 
 ---
 
-## Structure
+## Python Library Structure
 ```text
 emgaxo/
 ├── __init__.py
