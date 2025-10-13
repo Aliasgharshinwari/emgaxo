@@ -91,7 +91,7 @@ Head over to the MNIST_Tutorial Folder and run the example scripts in their resp
 If you use this library in a publication, please cite the software/article
 ```bash
 @software{emgaxo,
-  author       = {Ali Asghar, Shahzad Bangash, Suleman Shah, Dr. Salim Ullah, Dr. Laiq Hasan, Dr. Akash, Dr. Siva Satyendra Sahoo},
+  author       = {Ali Asghar, Shahzad Bangash, Suleman Shah, Dr. Salim Ullah, Dr. Laiq Hasan, Dr. Akash and Dr. Siva Satyendra Sahoo},
   title        = {EMGAxO: Extending Machine Learning Hardware Generators with Approximate Operators},
   year         = {2025},
   url          = {https://github.com/Aliasgharshinwari/emgaxo},
@@ -103,7 +103,7 @@ If you use this library in a publication, please cite the software/article
 
 ```bash
 @inproceedings{emgaxo,
-  author       = {Ali Asghar and Shahzad Bangash and Suleman Shah and Salim Ullah and Laiq Hasan and Akash and Siva Satyendra Sahoo},
+  author       = {Ali Asghar, Shahzad Bangash, Suleman Shah, Dr. Salim Ullah, Dr. Laiq Hasan, Dr. Akash and Dr. Siva Satyendra Sahoo},
   title        = {{EMGAxO: Extending Machine Learning Hardware Generators with Approximate Operators}},
   booktitle    = {Proceedings of the 2025 International Conference on Compilers, Architectures, and Synthesis for Embedded Systems (CASES)},
   year         = {2025},
