@@ -28,7 +28,7 @@ emgaxo/
 ├── __init__.py
 ├── AccuracyTester/
 │   ├── __init__.py
-│   ├── AccuracyTester.py               # Evaluates an ONNX model’s classification performance (accuracy, precision, recall, F1)
+│   ├── AccuracyTester.py               # Evaluates an ONNX model’s classification metrics (accuracy, precision, recall, F1)
 │   │                                   # with optional custom operator support and GPU-based inference.
 │   └── AccuracyTester_AppAxO.py        # Generates multiple ONNX model variants by progressively modifying QGEMM layers with
 │                                       # different 36-bit AppAxO configurations for approximate computing exploration.
@@ -36,7 +36,8 @@ emgaxo/
 ├── AppAxO/
 │   ├── __init__.py
 │   └── Evaluate_Multiplier.py          # Implements a CUDA-based LUT-configurable 8-bit approximate multiplier kernel using
-│                                       # PyCUDA to compute full input pair products and evaluate detailed error metrics for each LUT configuration.
+│                                       # PyCUDA to compute full input pair products and evaluate detailed error metrics for
+│                                       # each LUT configuration.
 │
 ├── CustomOpLib/
 │   └── libcustom_op_library.so         # Shared library of custom ONNX Runtime operators (CUDA) implementing the
@@ -45,7 +46,8 @@ emgaxo/
 ├── ModelModifier/
 │   ├── __init__.py
 │   └── ModelModifier.py               # Modifies an ONNX model by replacing target operators with custom
-|                                      # approximate QGEMM nodes, optimizes the quantized graph, and rewires or updates tensor datatypes for approximate inference support.
+|                                      # approximate QGEMM nodes, optimizes the quantized graph, and rewires or updates
+|                                      # tensor datatypes for approximate inference support.
 
 
 ```
