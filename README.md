@@ -102,15 +102,7 @@ If you use this library in a publication, please cite the software/article
 ```
 
 ```bash
-@inproceedings{emgaxo,
-  author       = {Ali Asghar, Shahzad Bangash, Suleman Shah, Dr. Salim Ullah, Dr. Laiq Hasan, Dr. Akash and Dr. Siva Satyendra Sahoo},
-  title        = {{EMGAxO: Extending Machine Learning Hardware Generators with Approximate Operators}},
-  booktitle    = {Proceedings of the 2025 International Conference on Compilers, Architectures, and Synthesis for Embedded Systems (CASES)},
-  year         = {2025},
-  organization = {University of Engineering and Technology Peshawar and Ruhr-Universität Bochum},
-  url          = {https://github.com/Aliasgharshinwari/emgaxo},
-  note         = {EMGAxO extends hls4ml with the AppAxO Library to enable approximate computing in FPGA-based machine learning accelerators.},
-  keywords     = {Approximate computing, FPGA, Quantized operators, Machine learning acceleration},
-  doi          = {10.1109/LES.2025.3600043}
-}
+A. Asghar *et al.*, "**EMGAxO: Extending Machine Learning Hardware Generators With Approximate Operators**,"  
+*IEEE Embedded Systems Letters*, vol. 17, no. 5, pp. 345–348, Oct. 2025,  
+doi: [10.1109/LES.2025.3600043](https://doi.org/10.1109/LES.2025.3600043)
 ```
