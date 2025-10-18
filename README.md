@@ -99,14 +99,15 @@ If you use **EMGAxO** in your research, please cite:
 <summary>📚 BibTeX</summary>
 
 ```bibtex
-@article{asghar2025emgaxo,
-  author    = {Ali Asghar and Shahzad Bangash and Suleman Shah and Salim Ullah and Laiq Hasan and Akash and Siva Satyendra Sahoo},
-  title     = {EMGAxO: Extending Machine Learning Hardware Generators With Approximate Operators},
-  journal   = {IEEE Embedded Systems Letters},
-  volume    = {17},
-  number    = {5},
-  pages     = {345--348},
-  year      = {2025},
-  doi       = {10.1109/LES.2025.3600043}
-}
+@ARTICLE{11205901,
+  author={Asghar, Ali and Bangash, Shahzad and Shah, Suleman and Hasan, Laiq and Ullah, Salim and Satyendra Sahoo, Siva and Kumar, Akash},
+  journal={IEEE Embedded Systems Letters}, 
+  title={EMGAxO: Extending Machine Learning Hardware Generators With Approximate Operators}, 
+  year={2025},
+  volume={17},
+  number={5},
+  pages={345-348},
+  keywords={Accuracy;Embedded systems;Computational modeling;Approximate computing;Machine learning;Software;Table lookup;System-on-chip;Field programmable gate arrays;Robots;Approximate computing;embedded systems;FPGA;hardware accelerators;HPC;machine learning},
+  doi={10.1109/LES.2025.3600043}}
+
 
