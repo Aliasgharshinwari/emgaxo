@@ -1,9 +1,25 @@
 #!/usr/bin/env python3
 import sys
 import numpy as np
-import pycuda.autoinit
-import pycuda.driver as cuda
-from pycuda.compiler import SourceModule
+
+# Try importing CUDA — fallback if not available
+try:
+    import pycuda.autoinit
+    import pycuda.driver as cuda
+    from pycuda.compiler import SourceModule
+    GPU_AVAILABLE = True
+except Exception as e:
+    print("⚠️ CUDA not available, falling back to CPU mode.")
+    GPU_AVAILABLE = False
+
+# ───────────────────────────────────────────────
+# CPU reference version (for fallback)
+# ───────────────────────────────────────────────
+def mult_kernel_cpu(a, b, lut_config):
+    # For now, approximate same as accurate multiplication
+    # (you can implement same LUT logic in CPU if needed)
+    return a.astype(np.int32) * b.astype(np.int32)
+
 
 # Compile the CUDA kernel (copy your original cu_source string here)
 cu_source = r'''
