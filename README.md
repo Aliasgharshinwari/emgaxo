@@ -43,11 +43,11 @@ emgaxo/
 │   └── libcustom_op_library.so         # Shared library of custom ONNX Runtime operators (CUDA) implementing the
 │                                       # approximate quantized GEMM used by EMGAxO at inference time.
 │
-├── ModelModifier/
-│   ├── __init__.py
-│   └── ModelModifier.py               # Modifies an ONNX model by replacing target operators with custom
-|                                      # approximate QGEMM nodes, optimizes the quantized graph, and rewires or updates
-|                                      # tensor datatypes for approximate inference support.
+└── ModelModifier/
+    ├── __init__.py
+    └── ModelModifier.py               # Modifies an ONNX model by replacing target operators with custom
+                                       # approximate QGEMM nodes, optimizes the quantized graph, and rewires or updates
+                                       # tensor datatypes for approximate inference support.
 
 
 ```
