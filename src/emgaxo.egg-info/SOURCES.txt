@@ -6,9 +6,11 @@ src/emgaxo.egg-info/PKG-INFO
 src/emgaxo.egg-info/SOURCES.txt
 src/emgaxo.egg-info/dependency_links.txt
 src/emgaxo.egg-info/top_level.txt
-src/emgaxo/AccuracyTester/MNIST_AccuracyTester.py
-src/emgaxo/AccuracyTester/MNIST_AccuracyTester_AppAxO.py
+src/emgaxo/AccuracyTester/AccuracyTester.py
+src/emgaxo/AccuracyTester/AccuracyTester_AppAxO.py
 src/emgaxo/AccuracyTester/__init__.py
+src/emgaxo/AppAxO/Evaluate_Multiplier.py
+src/emgaxo/AppAxO/__init__.py
 src/emgaxo/ModelModifier/ModelModifier.py
 src/emgaxo/ModelModifier/__init__.py
 src/emgaxo/Operators/__init__.py
@@ -23,4 +25,4 @@ src/emgaxo/Operators/Approximate/mult_4x4.py
 src/emgaxo/Operators/Approximate/mult_8x8.py
 tests/test_customQGemm_CXX.py
 tests/test_customQGemm_PyOp.py
-tests/test_model_modifier.py
+tests/test_evaluate_multiplier.py

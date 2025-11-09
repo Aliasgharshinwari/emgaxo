@@ -62,8 +62,8 @@ numpy==1.26.4
 oauthlib==3.2.2
 od==2.0.2
 onnx==1.17.0
-onnxruntime_extensions==0.14.0
 onnxruntime-gpu==1.21.0
+onnxruntime_extensions==0.14.0
 onnxscript==0.2.5
 opt_einsum==3.4.0
 packaging==24.2
