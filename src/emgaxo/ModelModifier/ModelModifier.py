@@ -116,7 +116,7 @@ def modify_model(source_path, destination_path, ops_to_replace, nodes_to_replace
     print(f"Model successfully saved to {destination_path}")
     
 
-def modify_model(source_path, destination_path, ops_to_replace, nodes_to_replace=None, custom_domain='test.customop', use_approximate_ops = False, INIT_Value=-1, save_model=True):
+def modify_model(source_path, destination_path, ops_to_replace, nodes_to_replace=None, custom_domain='test.customop', use_approximate_ops = False, INIT_Value=-1, save_model=True, verbose=True):
     """
     Generalized function to replace specific operator types in an ONNX model with custom nodes.
 
@@ -133,7 +133,8 @@ def modify_model(source_path, destination_path, ops_to_replace, nodes_to_replace
     # Load the pre-trained model
     pre_trained_model = onnx.load(source_path)
     graph = pre_trained_model.graph
-    print(f"[DEBUG modify_model] INIT_Value = {INIT_Value}")
+    if verbose:
+        print(f"[DEBUG modify_model] INIT_Value = {INIT_Value}")
     # Define the custom opset import
     custom_opset = helper.make_operatorsetid(domain=custom_domain, version=1)
 
@@ -220,8 +221,9 @@ def modify_model(source_path, destination_path, ops_to_replace, nodes_to_replace
                 # Remove the current node and insert the custom node
                 graph.node.remove(node)
                 graph.node.insert(i, custom_node)
-                print(f"{i} Successfully replaced {node.name} ({node.op_type}) with {custom_node.name} ({custom_node.op_type})")
-                print(INIT_Value)
+                if verbose:
+                    print(f"{i} Successfully replaced {node.name} ({node.op_type}) with {custom_node.name} ({custom_node.op_type})")
+                    print(INIT_Value)
                 # Update connections if necessary
                 for output_name in output_names:
                     if output_name in input_to_output:
