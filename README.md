@@ -88,29 +88,26 @@ Head over to the MNIST_Tutorial Folder and run the example scripts in their resp
 
 
 ## Citation
-If you use this library in a publication, please cite the software/article
-```bash
-@software{emgaxo,
-  author       = {Ali Asghar, Shahzad Bangash, Suleman Shah, Dr. Salim Ullah, Dr. Laiq Hasan, Dr. Akash, Dr. Siva Satyendra Sahoo},
-  title        = {EMGAxO: Extending Machine Learning Hardware Generators with Approximate Operators},
-  year         = {2025},
-  url          = {https://github.com/Aliasgharshinwari/emgaxo},
-  version      = {1.0.0},
-  institution  = {University of Engineering and Technology Peshawar and Ruhr-Universität Bochum},
-  note         = {EMGAxO extends hls4ml with the AppAxO Library to enable approximate computing in FPGA-based machine learning accelerators.}
-}
-```
 
-```bash
-@inproceedings{emgaxo,
-  author       = {Ali Asghar and Shahzad Bangash and Suleman Shah and Salim Ullah and Laiq Hasan and Akash and Siva Satyendra Sahoo},
-  title        = {{EMGAxO: Extending Machine Learning Hardware Generators with Approximate Operators}},
-  booktitle    = {Proceedings of the 2025 International Conference on Compilers, Architectures, and Synthesis for Embedded Systems (CASES)},
-  year         = {2025},
-  organization = {University of Engineering and Technology Peshawar and Ruhr-Universität Bochum},
-  url          = {https://github.com/Aliasgharshinwari/emgaxo},
-  note         = {EMGAxO extends hls4ml with the AppAxO Library to enable approximate computing in FPGA-based machine learning accelerators.},
-  keywords     = {Approximate computing, FPGA, Quantized operators, Machine learning acceleration},
-  doi          = {10.1109/LES.2025.3600043}
-}
-```
+If you use **EMGAxO** in your research, please cite:
+
+> A. Asghar *et al.*, "EMGAxO: Extending Machine Learning Hardware Generators With Approximate Operators,"  
+> *IEEE Embedded Systems Letters*, vol. 17, no. 5, pp. 345–348, Oct. 2025.  
+> DOI: [10.1109/LES.2025.3600043](https://doi.org/10.1109/LES.2025.3600043)
+
+<details>
+<summary>📚 BibTeX</summary>
+
+```bibtex
+@ARTICLE{11205901,
+  author={Asghar, Ali and Bangash, Shahzad and Shah, Suleman and Hasan, Laiq and Ullah, Salim and Satyendra Sahoo, Siva and Kumar, Akash},
+  journal={IEEE Embedded Systems Letters}, 
+  title={EMGAxO: Extending Machine Learning Hardware Generators With Approximate Operators}, 
+  year={2025},
+  volume={17},
+  number={5},
+  pages={345-348},
+  keywords={Accuracy;Embedded systems;Computational modeling;Approximate computing;Machine learning;Software;Table lookup;System-on-chip;Field programmable gate arrays;Robots;Approximate computing;embedded systems;FPGA;hardware accelerators;HPC;machine learning},
+  doi={10.1109/LES.2025.3600043}}
+
+
