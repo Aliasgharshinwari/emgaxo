@@ -54,7 +54,7 @@ def modify_model(source_path, destination_path, ops_to_replace, nodes_to_replace
 
                 input_names = list(node.input)
                 output_names = list(node.output)
-                
+
                 # Preserve existing attributes
                 preserved_attrs = [attr for attr in node.attribute]
 
@@ -72,7 +72,7 @@ def modify_model(source_path, destination_path, ops_to_replace, nodes_to_replace
                     )
 
                 else:
-                    
+
 
                     custom_initializer = helper.make_tensor(
                         name=f"INIT_Value{i}",
@@ -92,10 +92,10 @@ def modify_model(source_path, destination_path, ops_to_replace, nodes_to_replace
                         domain=custom_domain
                     )
 
-        
+
                      # Add the initializer to the graph
                     graph.initializer.append(custom_initializer)
-                 
+
 
                 # Remove the current node and insert the custom node
                 graph.node.remove(node)
@@ -107,14 +107,14 @@ def modify_model(source_path, destination_path, ops_to_replace, nodes_to_replace
                     if output_name in input_to_output:
                         connected_node, output_index = input_to_output[output_name]
                         connected_node.input[output_index] = custom_node.output[0]
- 
+
     #pre_trained_model = helper.make_model(graph,
     #                      opset_imports=[make_opsetid("", 19), make_opsetid(custom_domain, 1)])
 
     # Save the modified model
     onnx.save_model(pre_trained_model, destination_path)
     print(f"Model successfully saved to {destination_path}")
-    
+
 
 def modify_model(source_path, destination_path, ops_to_replace, nodes_to_replace=None, custom_domain='test.customop', use_approximate_ops = False, INIT_Value=-1, save_model=True, verbose=True):
     """
@@ -159,7 +159,7 @@ def modify_model(source_path, destination_path, ops_to_replace, nodes_to_replace
 
                 input_names = list(node.input)
                 output_names = list(node.output)
-                
+
                 # Preserve existing attributes
                 preserved_attrs = [attr for attr in node.attribute]
 
@@ -177,7 +177,7 @@ def modify_model(source_path, destination_path, ops_to_replace, nodes_to_replace
                     )
 
                 else:
-                    
+
                     try:
                         A_scale = float(get_init_tensor(graph, input_names[1]))   # A_scale
                         B_scale = float(get_init_tensor(graph, input_names[4]))   # B_scale
@@ -185,8 +185,8 @@ def modify_model(source_path, destination_path, ops_to_replace, nodes_to_replace
                     except Exception as e:      # fall back gracefully
                         raise RuntimeError(f"could not fetch scales for {node.name}: {e}")
 
-                    output_scale_val = A_scale * B_scale / C_scale
-                    
+#                    output_scale_val = A_scale * B_scale / C_scale
+
                     custom_initializer1 = helper.make_tensor(
                         name=f"INIT_Value{i}",
                         data_type=onnx.TensorProto.INT64,  # Use the appropriate data type
@@ -194,15 +194,15 @@ def modify_model(source_path, destination_path, ops_to_replace, nodes_to_replace
                         vals=[INIT_Value]  # Replace INIT_Value with actual value
                     )
 
-                    custom_initializer2 = helper.make_tensor(
-                        name=f"output_scale{i}",
-                        data_type=onnx.TensorProto.FLOAT,  # Use the appropriate data type
-                        dims=[],  # Scalar value
-                        vals=[output_scale_val]  # Replace INIT_Value with actual value
-                    )
+                    # custom_initializer2 = helper.make_tensor(
+                    #     name=f"output_scale{i}",
+                    #     data_type=onnx.TensorProto.FLOAT,  # Use the appropriate data type
+                    #     dims=[],  # Scalar value
+                    #     vals=[output_scale_val]  # Replace INIT_Value with actual value
+                    # )
                         # Add the new input to the list of inputs
                     input_names.append(f"INIT_Value{i}")
-                    input_names.append(f"output_scale{i}")
+                    #input_names.append(f"output_scale{i}")
 
                     # Create the custom node
                     custom_node = helper.make_node(
@@ -212,11 +212,11 @@ def modify_model(source_path, destination_path, ops_to_replace, nodes_to_replace
                         name=node.name,
                         domain=custom_domain
                     )
-        
+
                      # Add the initializer to the graph
                     graph.initializer.append(custom_initializer1)
-                    graph.initializer.append(custom_initializer2)
-                
+#                    graph.initializer.append(custom_initializer2)
+
 
                 # Remove the current node and insert the custom node
                 graph.node.remove(node)
@@ -229,7 +229,7 @@ def modify_model(source_path, destination_path, ops_to_replace, nodes_to_replace
                     if output_name in input_to_output:
                         connected_node, output_index = input_to_output[output_name]
                         connected_node.input[output_index] = custom_node.output[0]
- 
+
     #pre_trained_model = helper.make_model(graph,
     #                      opset_imports=[make_opsetid("", 19), make_opsetid(custom_domain, 1)])
 
@@ -237,19 +237,17 @@ def modify_model(source_path, destination_path, ops_to_replace, nodes_to_replace
         # Save the modified model
         onnx.save_model(pre_trained_model, destination_path)
         print(f"Model successfully saved to {destination_path}")
-    
+
     return pre_trained_model
-    
 
 import onnx
 from onnx import helper
 
-def OptimizeQGraph(model, io_datatype):    
+def OptimizeQGraph(model, io_datatype):
     modified_model = remove_node(model, "QuantizeLinear")
     modified_model = remove_node(modified_model, "DequantizeLinear")
     modified_model = remove_node(modified_model, "QLinearSoftmax")
-    #modified_model = remove_node(modified_model, "QLinearSigmoid")
-    modified_model = remove_node(modified_model, "Reshape")
+    #modified_model = remove_node(modified_model, "Reshape")
     #modified_model = set_tensor_dtype(modified_model, "args_0", "uint8", True)
     #modified_model = set_tensor_dtype(modified_model, "sequential/dense_2/BiasAdd:0_quantized", "uint8", False)
      # Set dtype for all inputs

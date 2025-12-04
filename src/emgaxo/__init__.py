@@ -1,5 +1,4 @@
 from .AccuracyTester import check_accuracy
-from .AccuracyTester import ModifyWithAppAxO
 from .ModelModifier import modify_model
 from .ModelModifier import OptimizeQGraph
 

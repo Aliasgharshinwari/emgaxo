@@ -7,6 +7,9 @@ from onnx import mapping
 from onnx.onnx_pb import OperatorSetIdProto
 from onnxscript import opset11 as op
 from sklearn.metrics import f1_score, precision_score, recall_score, confusion_matrix, classification_report
+from onnxruntime_extensions import (
+    onnx_op, PyCustomOpDef, make_onnx_model, 
+    get_library_path as _get_library_path)
 
 
 def quantize_linear_np(x_float, scale, zero_point, dtype=np.int8):
@@ -95,15 +98,49 @@ def check_accuracy(model, use_custom_ops=False, custom_domain='test.customop', r
         x_test = x_test.astype(np.float32) 
     elif np.issubdtype(input_dtype, np.int8):
         x_test = x_test.astype(np.int8) 
-
     else:
         x_test = x_test.astype(np.uint8)
 
     
     # Reshape input if necessary
     if len(input_shape) == 2 and input_shape[1] == 784:
+        # FC MNIST: [N, 784]
         x_test = x_test.reshape(x_test.shape[0], -1)
 
+    elif len(input_shape) == 4:
+        # Handle Conv2D MNIST or similar
+        N = x_test.shape[0]
+        # Current x_test from tf.keras.datasets.mnist is [N, 28, 28]
+        if x_test.ndim == 3:
+            H, W = x_test.shape[1], x_test.shape[2]
+            exp_N, exp_D1, exp_D2, exp_D3 = input_shape  # could be [None,28,28,1] or [None,1,28,28]
+
+            # Case A: NHWC [N, 28, 28, 1]
+            if (exp_D1 in (None, H) and exp_D2 in (None, W) and exp_D3 in (None, 1)):
+                x_test = x_test.reshape(N, H, W, 1)
+
+            # Case B: NCHW [N, 1, 28, 28]
+            elif (exp_D1 in (None, 1) and exp_D2 in (None, H) and exp_D3 in (None, W)):
+                x_test = x_test.reshape(N, 1, H, W)
+
+            else:
+                raise ValueError(
+                    f"Model expects {input_shape} (4D) but x_test has shape {x_test.shape}. "
+                    "Check whether model is NHWC or NCHW."
+                )
+
+        # If x_test already 4D but layout mismatches, try NHWC<->NCHW swap
+        elif x_test.ndim == 4:
+            # Model NHWC: [None, 28, 28, 1], data NCHW: [N, 1, 28, 28]
+            if input_shape[1] == 28 and input_shape[2] == 28 and input_shape[3] in (None, 1) \
+               and x_test.shape[1] == 1:
+                x_test = np.transpose(x_test, (0, 2, 3, 1))
+            # Model NCHW: [None, 1, 28, 28], data NHWC: [N, 28, 28, 1]
+            elif input_shape[1] in (None, 1) and input_shape[2] == 28 and input_shape[3] == 28 \
+                 and x_test.shape[-1] == 1:
+                x_test = np.transpose(x_test, (0, 3, 1, 2))
+
+    print("Run Inference...")
     # Run inference
     predicted_labels = []
     batch_size = batch_size
@@ -139,7 +176,7 @@ def check_accuracy(model, use_custom_ops=False, custom_domain='test.customop', r
 
             predicted_labels.extend(predicted_batch)
             total_time += (end_time - start_time)
-            #print("predicted_batch", predicted_batch)
+            print("predicted_batch", predicted_batch)
             #print("predicted_labels", predicted_labels)
             # Optional logging
             # print(logits)
@@ -164,7 +201,7 @@ def check_accuracy(model, use_custom_ops=False, custom_domain='test.customop', r
     #print(f"F1 Score: {f1:.4f}")
 
     avg_inference_time = total_time / len(predicted_labels)
-    #print(f"Average inference time: {avg_inference_time*1000:.4f} ms")
+    print(f"Average inference time: {avg_inference_time*1000:.4f} ms")
     #print(f"Total execution time for inference: {total_time*1000:.4f} ms")
     #print(f"Accuracy: {accuracy*100:.2f}%")
     
