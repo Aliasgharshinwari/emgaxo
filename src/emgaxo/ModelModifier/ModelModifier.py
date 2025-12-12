@@ -243,24 +243,24 @@ def modify_model(source_path, destination_path, ops_to_replace, nodes_to_replace
 import onnx
 from onnx import helper
 
-def OptimizeQGraph(model, io_datatype):
-    modified_model = remove_node(model, "QuantizeLinear")
-    modified_model = remove_node(modified_model, "DequantizeLinear")
-    modified_model = remove_node(modified_model, "QLinearSoftmax")
+def OptimizeQGraph(model, io_datatype, verbose=False):
+    modified_model = remove_node(model, "QuantizeLinear", verbose=verbose)
+    modified_model = remove_node(modified_model, "DequantizeLinear", verbose=verbose)
+    modified_model = remove_node(modified_model, "QLinearSoftmax", verbose=verbose)
     #modified_model = remove_node(modified_model, "Reshape")
     #modified_model = set_tensor_dtype(modified_model, "args_0", "uint8", True)
     #modified_model = set_tensor_dtype(modified_model, "sequential/dense_2/BiasAdd:0_quantized", "uint8", False)
      # Set dtype for all inputs
     for input_tensor in modified_model.graph.input:
-        modified_model = set_tensor_dtype(modified_model, input_tensor.name, io_datatype, True)
+        modified_model = set_tensor_dtype(modified_model, input_tensor.name, io_datatype, True, verbose=verbose)
 
     # Set dtype for all outputs
     for output_tensor in modified_model.graph.output:
-        modified_model = set_tensor_dtype(modified_model, output_tensor.name, io_datatype, False)
+        modified_model = set_tensor_dtype(modified_model, output_tensor.name, io_datatype, False, verbose=verbose)
 
     return modified_model
 
-def remove_node(model, target_node_op_type):
+def remove_node(model, target_node_op_type, verbose=False):
     graph = model.graph
     target_node = None
 
@@ -271,10 +271,12 @@ def remove_node(model, target_node_op_type):
             break
 
     if target_node is None:
-        print(f"Node '{target_node_op_type}' not found.")
+        if verbose:
+            print(f"Node '{target_node_op_type}' not found.")
         return model  # Node not found, return original model
 
-    print(f"Found node '{target_node_op_type}', removing...")
+    if verbose:
+        print(f"Found node '{target_node_op_type}', removing...")
 
     # Find all successors (nodes that consume the output of the target node)
     successors = []
@@ -291,7 +293,8 @@ def remove_node(model, target_node_op_type):
             output_rewired = True
 
     if output_rewired:
-        print(f"Rewired graph.output to bypass '{target_node_op_type}'")
+        if verbose:
+            print(f"Rewired graph.output to bypass '{target_node_op_type}'")
 
     # Bypass the node itself (pass input directly to successors)
     input_to_pass = target_node.input[0]  # This works for QuantizeLinear/DequantizeLinear
@@ -317,11 +320,12 @@ def remove_node(model, target_node_op_type):
     new_model.ir_version = model.ir_version
     new_model.opset_import.extend(model.opset_import)
     new_model.opset_import[0].version = 21  # Set opset to 21 before saving
-    print(f"Node '{target_node_op_type}' removed and graph rewired.")
+    if verbose:
+        print(f"Node '{target_node_op_type}' removed and graph rewired.")
     return new_model
 
 
-def set_tensor_dtype(model, tensor_name, new_dtype, is_input=True):
+def set_tensor_dtype(model, tensor_name, new_dtype, is_input=True, verbose=False):
     """
     Set the data type of an input or output tensor in the ONNX model.
 
@@ -359,7 +363,8 @@ def set_tensor_dtype(model, tensor_name, new_dtype, is_input=True):
         if tensor.name == tensor_name:
             tensor.type.tensor_type.elem_type = new_dtype_enum
             found = True
-            print(f"{'Input' if is_input else 'Output'} '{tensor_name}' data type changed to {new_dtype}")
+            if verbose:
+                print(f"{'Input' if is_input else 'Output'} '{tensor_name}' data type changed to {new_dtype}")
             break
 
     if not found:

@@ -140,7 +140,7 @@ def check_accuracy(model, use_custom_ops=False, custom_domain='test.customop', r
                  and x_test.shape[-1] == 1:
                 x_test = np.transpose(x_test, (0, 3, 1, 2))
 
-    print("Run Inference...")
+    #print("Run Inference...")
     # Run inference
     predicted_labels = []
     batch_size = batch_size
@@ -176,7 +176,7 @@ def check_accuracy(model, use_custom_ops=False, custom_domain='test.customop', r
 
             predicted_labels.extend(predicted_batch)
             total_time += (end_time - start_time)
-            print("predicted_batch", predicted_batch)
+            #print("predicted_batch", predicted_batch)
             #print("predicted_labels", predicted_labels)
             # Optional logging
             # print(logits)
