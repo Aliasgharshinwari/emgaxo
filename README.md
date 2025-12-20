@@ -6,20 +6,33 @@ It enables researchers to explore **approximate computing within FPGA-accelerate
 ---
 ## Features
 
-- Extends **hls4ml** with **approximate operator support**
-- **Seamless integration** with hls4ml models
-- **NVIDIA CUDA** Accelerated Software Inference for ANNs  
-- **AppAxO's** 8-bit Signed Multipliers with configurable 36-bit LUT architectures
-- Allows replacing exact multipliers with **LUT-based approximate multipliers** and showing the final accuracy of MLP Models
-- Built-in error analysis:  
-  - Average/Absolute Error  
-  - Relative Error metrics  
-  - Error Probability  
-  - Max/Min Error  
-- **Design-space exploration** across multiple multiplier configurations  
-- Support for **ONNX → hls4ml → FPGA flow** with Approximate Multipliers  
-- Targets FPGA deployment with **resource-accuracy trade-off exploration**  
+- **Approximate Operator Support**
+  Integrates custom approximate operators into hardware generation pipelines for machine learning.
 
+- **AppAxO Integration**
+  Utilizes AppAxO's 8-bit Signed Multipliers with configurable 36-bit LUT architectures.
+
+- **LUT-Based Approximation**
+  Enables the replacement of exact multipliers with LUT-based approximate multipliers to evaluate final MLP model accuracy.
+
+- **NVIDIA CUDA Acceleration**
+  Features accelerated software inference for Artificial Neural Networks (ANNs).
+
+- **ONNX → FPGA Workflow**
+  Supports a direct flow from ONNX models to FPGA deployment with Approximate Multipliers.
+
+- **Resource-Accuracy Trade-offs**
+  Targets FPGA deployment by enabling detailed exploration of resource usage versus model accuracy.
+
+- **Design-Space Exploration**
+  Facilitates testing and validation across multiple multiplier configurations.
+
+- **Comprehensive Error Analysis**
+  Includes built-in tools for detailed metric evaluation:
+  - Average/Absolute Error
+  - Relative Error metrics
+  - Error Probability
+  - Max/Min Error
 ---
 
 ## Python Library Structure
