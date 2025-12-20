@@ -151,19 +151,40 @@ def check_accuracy(model, use_custom_ops=False, custom_domain='test.customop', r
     # Set up ONNX Runtime session options
     so = ort.SessionOptions()
     if use_custom_ops:
-        system = platform.system()
-        if custom_domain == 'ai.onnx.contrib':
-            so.register_custom_ops_library(_get_library_path())  # Placeholder for contrib lib
-        elif custom_domain == 'test.customop':
-            if system == 'Windows':
-                custom_op_library_path = "C:/Users/Engineer/Desktop/GitHUb/onnxruntime/build/Windows/RelWithDebInfo/Debug/custom_op_library.dll"
-            elif system == 'Linux':
-                custom_op_library_path = "/home/ali/Desktop/onnxruntime/cmake/cmake-build-release/libcustom_op_library.so"
-            elif system == 'Darwin':
-                custom_op_library_path = ""  # Add macOS path if needed
-            else:
-                raise RuntimeError(f"Unsupported OS: {system}")
-            so.register_custom_ops_library(custom_op_library_path)
+            system = platform.system()
+            
+            if custom_domain == 'ai.onnx.contrib':
+                try:
+                    so.register_custom_ops_library(_get_library_path())
+                except NameError:
+                    print("Warning: _get_library_path not found. Is onnxruntime_extensions installed?")
+            
+            elif custom_domain == 'test.customop':
+                # --- DYNAMIC LIBRARY PATH CONSTRUCTION ---
+                # 1. Get the directory containing this script (emgaxo/AccuracyTester/)
+                current_dir = os.path.dirname(os.path.abspath(__file__))
+                
+                # 2. Go up one level to the package root (emgaxo/)
+                package_root = os.path.dirname(current_dir)
+                
+                # 3. Determine library name based on OS
+                if system == 'Windows':
+                    lib_name = "custom_op_library.dll"
+                elif system == 'Linux':
+                    lib_name = "libcustom_op_library.so"
+                elif system == 'Darwin':
+                    lib_name = "libcustom_op_library.dylib"
+                else:
+                    raise RuntimeError(f"Unsupported OS: {system}")
+                
+                # 4. Construct the full path: emgaxo/CustomOpLib/<lib_name>
+                custom_op_library_path = os.path.join(package_root, "CustomOpLib", lib_name)
+                
+                if not os.path.exists(custom_op_library_path):
+                    raise FileNotFoundError(f"Custom op library not found at: {custom_op_library_path}")
+                
+                so.register_custom_ops_library(custom_op_library_path)
+                # ----------------------------------------
 
     # Serialize the ONNX model
     ser = model.SerializeToString()
