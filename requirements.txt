@@ -4,3 +4,4 @@ onnx==1.17.0
 onnxruntime-gpu==1.21.0
 onnxruntime_extensions==0.14.0
 tf2onnx==1.16.1
+transformers==4.49.0

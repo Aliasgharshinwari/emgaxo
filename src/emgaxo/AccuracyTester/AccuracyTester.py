@@ -302,3 +302,4 @@ def check_accuracy(model, use_custom_ops=False, custom_domain='test.customop', r
     #print(f"Accuracy: {accuracy*100:.2f}%")
     
     return accuracy, precision, recall, f1
+
