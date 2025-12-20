@@ -6,11 +6,11 @@ It enables researchers to explore **approximate computing within FPGA-accelerate
 ---
 ## Features
 
-- Seamlessly integrates with popular deep learning frameworks by leveraging the **ONNX** standard for model ingestion.
+- Seamlessly integrates with deep learning frameworks by leveraging the **ONNX** standard for model ingestion.
 - Currently supports **QGemm** and **QLinearConv** layers for approximate inference and hardware generation.
 - Integrates custom approximate operators into ONNX ML Models.
 - Utilizes AppAxO's 8-bit Signed Multipliers with configurable 36-bit LUT architectures.
-- Enables the replacement of exact multipliers with LUT-based approximate multipliers to evaluate final model accuracy.
+- Enables the replacement of exact multipliers with approximate multipliers to evaluate final model accuracy.
 - Features CUDA-Accelerated software inference for Deep Neural Networks.
 - Targets FPGA deployment by enabling detailed exploration of resource usage versus model accuracy.
 - Facilitates testing and validation across multiple multiplier configurations.
