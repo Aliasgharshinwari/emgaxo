@@ -5,7 +5,6 @@ import numpy as np
 import onnxruntime as ort
 from onnx import mapping
 from onnx.onnx_pb import OperatorSetIdProto
-from onnxscript import opset11 as op
 from sklearn.metrics import f1_score, precision_score, recall_score, confusion_matrix, classification_report
 from onnxruntime_extensions import (
     onnx_op, PyCustomOpDef, make_onnx_model, 
