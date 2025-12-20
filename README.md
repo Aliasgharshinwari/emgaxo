@@ -6,35 +6,23 @@ It enables researchers to explore **approximate computing within FPGA-accelerate
 ---
 ## Features
 
-- **ML Framework Compatibility**
-  Seamlessly integrates with popular deep learning frameworks by leveraging the **ONNX** standard for model ingestion.
+- Seamlessly integrates with popular deep learning frameworks by leveraging the **ONNX** standard for model ingestion.
 
-- **ONNX Layer Support**
-  Currently supports **QGemm** and **QLinearConv** layers for approximate inference and hardware generation.
+- Currently supports **QGemm** and **QLinearConv** layers for approximate inference and hardware generation.
 
-- **ONNX → FPGA Workflow**
-  Supports a direct flow from ONNX models to FPGA deployment with Approximate Multipliers.
+- Integrates custom approximate operators into ONNX ML Models.
 
-- **Approximate Operator Support**
-  Integrates custom approximate operators into hardware generation pipelines for machine learning.
+- Utilizes AppAxO's 8-bit Signed Multipliers with configurable 36-bit LUT architectures.
 
-- **AppAxO Integration**
-  Utilizes AppAxO's 8-bit Signed Multipliers with configurable 36-bit LUT architectures.
+- Enables the replacement of exact multipliers with LUT-based approximate multipliers to evaluate final model accuracy.
 
-- **LUT-Based Approximation**
-  Enables the replacement of exact multipliers with LUT-based approximate multipliers to evaluate final model accuracy.
+- Features CUDA-Accelerated software inference for Deep Neural Networks.
 
-- **NVIDIA CUDA Acceleration**
-  Features accelerated software inference for Deep Neural Networks.
+- Targets FPGA deployment by enabling detailed exploration of resource usage versus model accuracy.
 
-- **Resource-Accuracy Trade-offs**
-  Targets FPGA deployment by enabling detailed exploration of resource usage versus model accuracy.
+- Facilitates testing and validation across multiple multiplier configurations.
 
-- **Design-Space Exploration**
-  Facilitates testing and validation across multiple multiplier configurations.
-
-- **Comprehensive Error Analysis**
-  Includes built-in tools for detailed metric evaluation:
+- Includes built-in tools for detailed metric evaluation:
   - Average/Absolute Error
   - Relative Error metrics
   - Error Probability
