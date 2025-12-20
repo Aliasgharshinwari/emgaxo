@@ -55,8 +55,6 @@ emgaxo/
 ### Prerequisites
 - Python **3.10.12**  
 - CUDA Toolkit 12.4
-- [hls4ml](https://fastmachinelearning.org/hls4ml/)  
-- Vitis HLS and Vivado 2022.2
 
 ### Step 1: Clone the Repository
 ```bash
