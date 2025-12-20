@@ -6,23 +6,26 @@ It enables researchers to explore **approximate computing within FPGA-accelerate
 ---
 ## Features
 
-- **Approximate Operator Support**
-  Integrates custom approximate operators into hardware generation pipelines for machine learning.
+- **ML Framework Compatibility**
+  Seamlessly integrates with popular deep learning frameworks by leveraging the **ONNX** standard for model ingestion.
 
 - **ONNX Layer Support**
   Currently supports **QGemm** and **QLinearConv** layers for approximate inference and hardware generation.
+
+- **ONNX → FPGA Workflow**
+  Supports a direct flow from ONNX models to FPGA deployment with Approximate Multipliers.
+
+- **Approximate Operator Support**
+  Integrates custom approximate operators into hardware generation pipelines for machine learning.
 
 - **AppAxO Integration**
   Utilizes AppAxO's 8-bit Signed Multipliers with configurable 36-bit LUT architectures.
 
 - **LUT-Based Approximation**
-  Enables the replacement of exact multipliers with LUT-based approximate multipliers to evaluate final MLP model accuracy.
+  Enables the replacement of exact multipliers with LUT-based approximate multipliers to evaluate final model accuracy.
 
 - **NVIDIA CUDA Acceleration**
-  Features accelerated software inference for Artificial Neural Networks (ANNs).
-
-- **ONNX → FPGA Workflow**
-  Supports a direct flow from ONNX models to FPGA deployment with Approximate Multipliers.
+  Features accelerated software inference for Deep Neural Networks.
 
 - **Resource-Accuracy Trade-offs**
   Targets FPGA deployment by enabling detailed exploration of resource usage versus model accuracy.
