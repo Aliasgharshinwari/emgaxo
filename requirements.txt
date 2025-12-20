@@ -1,2 +1,6 @@
 tensorflow==2.14.1
 tensorflow-estimator==2.14.0
+onnx==1.17.0
+onnxruntime-gpu==1.21.0
+onnxruntime_extensions==0.14.0
+
