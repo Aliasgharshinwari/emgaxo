@@ -287,9 +287,9 @@ def check_accuracy(model, use_custom_ops=False, custom_domain='test.customop', r
     is_binary = len(np.unique(y_test)) == 2
     average_method = 'binary' if is_binary else 'weighted'
 
-    precision = calculate_precision(y_test, predicted_labels, average=average_method, zero_division=0)
-    recall = calculate_recall(y_test, predicted_labels, average=average_method)
-    f1 = calculate_f1_score(y_test, predicted_labels, average=average_method)
+    precision = calculate_precision(y_test, predicted_labels)
+    recall = calculate_recall(y_test, predicted_labels)
+    f1 = calculate_f1_score(y_test, predicted_labels)
 
     #print(f"Accuracy: {accuracy*100:.2f}%")
     #print(f"Precision: {precision:.4f}")
