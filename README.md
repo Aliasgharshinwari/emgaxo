@@ -9,6 +9,9 @@ It enables researchers to explore **approximate computing within FPGA-accelerate
 - **Approximate Operator Support**
   Integrates custom approximate operators into hardware generation pipelines for machine learning.
 
+- **ONNX Layer Support**
+  Currently supports **QGemm** and **QLinearConv** layers for approximate inference and hardware generation.
+
 - **AppAxO Integration**
   Utilizes AppAxO's 8-bit Signed Multipliers with configurable 36-bit LUT architectures.
 
