@@ -5,11 +5,106 @@ import numpy as np
 import onnxruntime as ort
 from onnx import mapping
 from onnx.onnx_pb import OperatorSetIdProto
-from sklearn.metrics import f1_score, precision_score, recall_score, confusion_matrix, classification_report
 from onnxruntime_extensions import (
     onnx_op, PyCustomOpDef, make_onnx_model, 
     get_library_path as _get_library_path)
 
+import numpy as np
+
+def _get_confusion_counts(y_true, y_pred, cls):
+    """
+    Helper to calculate TP, FP, FN for a specific class.
+    """
+    tp = np.sum((y_pred == cls) & (y_true == cls))
+    fp = np.sum((y_pred == cls) & (y_true != cls))
+    fn = np.sum((y_pred != cls) & (y_true == cls))
+    return tp, fp, fn
+
+def calculate_precision(y_true, y_pred):
+    """
+    Calculates Precision: TP / (TP + FP)
+    Supports Binary and Weighted Multi-class.
+    """
+    classes = np.unique(y_true)
+    
+    # Binary Case
+    if len(classes) == 2 and set(classes) <= {0, 1}:
+        tp, fp, _ = _get_confusion_counts(y_true, y_pred, cls=1)
+        return tp / (tp + fp) if (tp + fp) > 0 else 0.0
+
+    # Weighted Multi-class Case
+    precisions = []
+    weights = []
+    
+    for cls in classes:
+        tp, fp, _ = _get_confusion_counts(y_true, y_pred, cls)
+        support = np.sum(y_true == cls)
+        
+        p = tp / (tp + fp) if (tp + fp) > 0 else 0.0
+        precisions.append(p)
+        weights.append(support)
+        
+    total_support = np.sum(weights)
+    return np.sum(np.array(precisions) * np.array(weights)) / total_support if total_support > 0 else 0.0
+
+def calculate_recall(y_true, y_pred):
+    """
+    Calculates Recall: TP / (TP + FN)
+    Supports Binary and Weighted Multi-class.
+    """
+    classes = np.unique(y_true)
+    
+    # Binary Case
+    if len(classes) == 2 and set(classes) <= {0, 1}:
+        tp, _, fn = _get_confusion_counts(y_true, y_pred, cls=1)
+        return tp / (tp + fn) if (tp + fn) > 0 else 0.0
+
+    # Weighted Multi-class Case
+    recalls = []
+    weights = []
+    
+    for cls in classes:
+        tp, _, fn = _get_confusion_counts(y_true, y_pred, cls)
+        support = np.sum(y_true == cls)
+        
+        r = tp / (tp + fn) if (tp + fn) > 0 else 0.0
+        recalls.append(r)
+        weights.append(support)
+        
+    total_support = np.sum(weights)
+    return np.sum(np.array(recalls) * np.array(weights)) / total_support if total_support > 0 else 0.0
+
+def calculate_f1_score(y_true, y_pred):
+    """
+    Calculates F1 Score: 2 * (Precision * Recall) / (Precision + Recall)
+    Supports Binary and Weighted Multi-class.
+    """
+    classes = np.unique(y_true)
+    
+    # Binary Case
+    if len(classes) == 2 and set(classes) <= {0, 1}:
+        tp, fp, fn = _get_confusion_counts(y_true, y_pred, cls=1)
+        p = tp / (tp + fp) if (tp + fp) > 0 else 0.0
+        r = tp / (tp + fn) if (tp + fn) > 0 else 0.0
+        return 2 * (p * r) / (p + r) if (p + r) > 0 else 0.0
+
+    # Weighted Multi-class Case
+    f1s = []
+    weights = []
+    
+    for cls in classes:
+        tp, fp, fn = _get_confusion_counts(y_true, y_pred, cls)
+        support = np.sum(y_true == cls)
+        
+        p = tp / (tp + fp) if (tp + fp) > 0 else 0.0
+        r = tp / (tp + fn) if (tp + fn) > 0 else 0.0
+        f = 2 * (p * r) / (p + r) if (p + r) > 0 else 0.0
+        
+        f1s.append(f)
+        weights.append(support)
+        
+    total_support = np.sum(weights)
+    return np.sum(np.array(f1s) * np.array(weights)) / total_support if total_support > 0 else 0.0
 
 def quantize_linear_np(x_float, scale, zero_point, dtype=np.int8):
     q = np.round(x_float / scale).astype(np.int64)
@@ -184,15 +279,17 @@ def check_accuracy(model, use_custom_ops=False, custom_domain='test.customop', r
 
 
     predicted_labels = np.array(predicted_labels)
+
+    
     accuracy = np.mean(predicted_labels == y_test)
  
     # New metrics
     is_binary = len(np.unique(y_test)) == 2
     average_method = 'binary' if is_binary else 'weighted'
 
-    precision = precision_score(y_test, predicted_labels, average=average_method, zero_division=0)
-    recall = recall_score(y_test, predicted_labels, average=average_method)
-    f1 = f1_score(y_test, predicted_labels, average=average_method)
+    precision = calculate_precision(y_test, predicted_labels, average=average_method, zero_division=0)
+    recall = calculate_recall(y_test, predicted_labels, average=average_method)
+    f1 = calculate_f1_score(y_test, predicted_labels, average=average_method)
 
     #print(f"Accuracy: {accuracy*100:.2f}%")
     #print(f"Precision: {precision:.4f}")
